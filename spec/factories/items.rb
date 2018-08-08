@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    name { Faker::FunnyName.name }
+    name { Faker::FamousLastWords.last_words }
     completed false
     todo_id nil
   end
