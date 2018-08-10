@@ -8,23 +8,15 @@ class ApplicationController < ActionController::API
 
   private
 
-  def find_or_create(decoded)
-    user = User.find_by(uuid: decoded['sub'])
-
-    if user.nil?
-      user = User.create!( email: decoded['email'],
-        name: decoded['email'].split('@')[0],
-        uuid: decoded['sub'] )
-    end
-
-    user
-  end
-
   def set_user
     token = request.headers['Authorization']
 
     raise 'Token required' if token.nil?
 
-    @current_user = find_or_create( jwt_decode(token) )
+    decoded = jwt_decode(token)
+
+    @current_user = User.create_with( email: decoded['email'],
+                                      name:  decoded['email'].split('@')[0] )
+                        .find_or_create_by!( uuid: decoded['sub'] )
   end
 end
