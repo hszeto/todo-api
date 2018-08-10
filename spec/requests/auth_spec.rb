@@ -9,9 +9,9 @@ RSpec.describe 'Auth', type: :request do
       it 'Create new user from jwt' do
         get('/todos',
           params: nil,
-          headers: { 'Authorization' => token }
-        )
+          headers: { 'Authorization' => token })
 
+        expect(last_response.status).to eq 200
         expect( User.all.count  ).to eq 1
         expect( User.last.name  ).to eq 'wrx02'
         expect( User.last.email ).to eq 'wrx02@hotmail.com'
@@ -29,9 +29,9 @@ RSpec.describe 'Auth', type: :request do
       it 'Found user and not create new user' do
         get('/todos',
           params: nil,
-          headers: { 'Authorization' => token }
-        )
+          headers: { 'Authorization' => token })
 
+        expect(last_response.status).to eq 200
         expect( User.all.count  ).to eq 1
         expect( User.last.name  ).to eq 'wrx02'
         expect( User.last.email ).to eq 'wrx02@hotmail.com'
@@ -44,8 +44,7 @@ RSpec.describe 'Auth', type: :request do
     it 'Will not create new user' do
       get('/todos',
         params: nil,
-        headers: { 'Authorization' => invalid_token }
-      )
+        headers: { 'Authorization' => invalid_token })
 
       expect( User.all.count     ).to eq 0
       expect(last_response.status).to eq 422
