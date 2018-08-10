@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :update, :destroy]
 
   def index
-    json_response( Todo.all )
+    json_response( @current_user.todos )
   end
 
   def show
@@ -10,7 +10,7 @@ class TodosController < ApplicationController
   end
 
   def create
-    todo = Todo.create!(todo_params)
+    todo = @current_user.todos.create!(todo_params)
     json_response(todo, :created)
   end
 
@@ -31,6 +31,6 @@ class TodosController < ApplicationController
   end
 
   def set_todo
-    @todo = Todo.find(params[:id])
+    @todo = @current_user.todos.find(params[:id])
   end
 end
