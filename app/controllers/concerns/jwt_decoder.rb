@@ -9,7 +9,14 @@ module JwtDecoder
 
       jwk = JSON::JWK.new jwk
 
-      JSON::JWT.decode jwt, jwk
+      decoded_token = JSON::JWT.decode jwt, jwk
+
+      # # Check JWT Expiration.
+      # # Cognito default 1 hour.
+      # # Add 7 days buffer time.
+      # raise 'Token expired' if ((decoded_token['exp'] + 7.days.to_i) < Time.now.to_i)
+
+      decoded_token
 
     rescue => e
       raise ExceptionHandler::InvalidToken, e.message
