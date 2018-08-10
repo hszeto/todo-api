@@ -53,6 +53,15 @@ RSpec.describe 'Auth', type: :request do
       end
     end
 
+    context 'When token missing.' do
+      it 'Will not create new user.' do
+        get '/todos'
+
+        expect( User.all.count     ).to eq 0
+        expect(last_response.status).to eq 422
+      end
+    end
+
     skip 'When token expired.' do
       it 'Will not create new user.' do
         get('/todos',
