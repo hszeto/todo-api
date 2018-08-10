@@ -9,11 +9,7 @@ class ApplicationController < ActionController::API
   private
 
   def set_user
-    token = request.headers['Authorization']
-
-    raise 'Token required' if token.nil?
-
-    decoded = jwt_decode(token)
+    decoded = jwt_decode( request.headers['Authorization'] )
 
     @current_user = User.create_with( email: decoded['email'],
                                       name:  decoded['email'].split('@')[0] )

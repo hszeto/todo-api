@@ -50,6 +50,7 @@ RSpec.describe 'Auth', type: :request do
 
         expect( User.all.count     ).to eq 0
         expect(last_response.status).to eq 422
+        expect(last_response.body['message']).to match(/unexpected token/)
       end
     end
 
@@ -59,6 +60,7 @@ RSpec.describe 'Auth', type: :request do
 
         expect( User.all.count     ).to eq 0
         expect(last_response.status).to eq 422
+        expect(last_response.body['message']).to eq 'Token required'
       end
     end
 
@@ -70,6 +72,7 @@ RSpec.describe 'Auth', type: :request do
 
         expect( User.all.count     ).to eq 0
         expect(last_response.status).to eq 422
+        expect(last_response.body['message']).to eq 'Token expired'
       end
     end
   end

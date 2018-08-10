@@ -3,6 +3,8 @@ module JwtDecoder
 
   def jwt_decode jwt
     begin
+      raise 'Token required' if jwt.nil?
+
       kid = JSON.parse( Base64.decode64(jwt.split('.')[0]) )['kid']
 
       jwk = jwk_set[:keys].detect{ |key| key[:kid] == kid }
