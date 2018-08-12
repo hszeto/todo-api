@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
-  include JsonResponse
   include ExceptionHandler
+  include JsonResponse
   include JwtDecoder
 
   before_action :set_user
