@@ -95,7 +95,7 @@ RSpec.describe 'Items API' do
     it 'create item success' do 
       post "/todos/#{todo_id}/items", params: valid_params, headers: header
 
-      expect(last_response.status).to eq 201
+      expect(last_response.status).to eq 200
       expect(last_response['name']).to eq valid_params['name']
     end
 
@@ -157,7 +157,7 @@ RSpec.describe 'Items API' do
     it 'success' do
       delete "/todos/#{todo_id}/items/#{id}", headers: header
 
-      expect(last_response.status).to eq 202
+      expect(last_response.status).to eq 200
     end
 
     it 'fail by unknown todo id' do

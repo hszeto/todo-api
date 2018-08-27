@@ -11,17 +11,20 @@ class TodosController < ApplicationController
 
   def create
     todo = @current_user.todos.create!(todo_params)
-    json_response(todo, :created)
+
+    json_response( @current_user.todos )
   end
 
   def update
     @todo.update(todo_params)
-    json_response({}, :accepted)
+
+    json_response( @current_user.todos )
   end
 
   def destroy
     @todo.destroy
-    json_response({}, :accepted)
+
+    json_response( @current_user.todos )
   end
 
   private

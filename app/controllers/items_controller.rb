@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @todo.items.create!(item_params)
 
-    json_response(@todo, :created)
+    json_response( @current_user.todos )
   end
 
   def update
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
 
-    json_response({}, :accepted)
+    json_response( @current_user.todos )
   end
 
   private

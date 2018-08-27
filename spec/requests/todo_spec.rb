@@ -59,7 +59,7 @@ RSpec.describe 'Todos API', type: :request do
       it 'create todo success' do
         post '/todos', params: valid_params, headers: header
 
-        expect(last_response.status).to eq 201
+        expect(last_response.status).to eq 200
         expect(last_response['title']).to eq valid_params['title']
       end
     end
@@ -82,8 +82,8 @@ RSpec.describe 'Todos API', type: :request do
       it 'update todo success' do
         put "/todos/#{todo_id}", params: valid_params, headers: header
 
-        expect(last_response.status).to eq 202
-        expect(last_response.body).to be_empty
+        expect(last_response.status).to eq 200
+        expect(last_response.body.size).to eq 5
       end
     end
 
@@ -111,7 +111,7 @@ RSpec.describe 'Todos API', type: :request do
       it 'delete todo success' do
         delete "/todos/#{todo_id}", headers: header
 
-        expect(last_response.status).to eq 202
+        expect(last_response.status).to eq 200
       end
     end
 
