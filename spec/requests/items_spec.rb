@@ -123,7 +123,7 @@ RSpec.describe 'Items API' do
     it 'update item success' do
       put "/todos/#{todo_id}/items/#{id}", params: valid_params, headers: header
 
-      expect(last_response.status).to eq 202
+      expect(last_response.status).to eq 200
       expect(last_response['name']).to eq valid_params['name']
     end
 

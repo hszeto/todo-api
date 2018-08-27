@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   def update
     @item.update!(item_params)
 
-    json_response({}, :accepted)
+    json_response( @current_user.todos )
   end
 
   def destroy
@@ -31,14 +31,14 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.permit(:name, :completed)
+    params.permit(:name, :todo_id, :id, :completed )
   end
 
   def set_todo
-    @todo = @current_user.todos.find(params[:todo_id])
+    @todo = @current_user.todos.find(item_params[:todo_id])
   end
 
   def set_todo_item
-    @item = @todo.items.find(params[:id]) if @todo
+    @item = @todo.items.find(item_params[:id]) if @todo
   end
 end
