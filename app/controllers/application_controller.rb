@@ -3,7 +3,13 @@ class ApplicationController < ActionController::API
   include JsonResponse
   include JwtDecoder
 
-  before_action :set_user
+  before_action :set_user, except: [:readiness]
+
+  def readiness
+    logger.info("Ready...")
+
+    json_response({})
+  end
 
 
   private
