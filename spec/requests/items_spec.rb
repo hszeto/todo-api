@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Items API' do
   let(:user)    { create(:user, name:'wrx02', email:'wrx02@hotmail.com', uuid:'7e87e697-65a8-4399-b84e-7e554fc2dc43') }
   let!(:todo)   { create(:todo, created_by: user.id) }
-  let!(:items)  { create_list(:item, 5, todo_id: todo.id) }
+  let!(:items)  { create_list(:item, 5, todo: todo) }
   let(:todo_id) { todo.id }
   let(:id)      { items.first.id }
 
   let(:user2)    { create(:user) }
   let!(:todo2)   { create(:todo, created_by: user2.id) }
-  let!(:items2)  { create_list(:item, 3, todo_id: todo2.id) }
+  let!(:items2)  { create_list(:item, 3, todo: todo2) }
   let(:todo2_id) { todo2.id }
   let(:id2)      { items2.first.id }
 
