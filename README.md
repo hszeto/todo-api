@@ -9,3 +9,6 @@
 
 #### Run test:
 * bundle exec rspec
+
+#### Deployment:
+* Hosted on Render since Nov 2022
