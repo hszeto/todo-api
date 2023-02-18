@@ -11,4 +11,5 @@
 * bundle exec rspec
 
 #### Deployment:
-* Hosted on Render since Nov 2022
+* Switch from Heroku to Render in Nov 2022
+* Switch from Render to Heroku in Feb 2023
